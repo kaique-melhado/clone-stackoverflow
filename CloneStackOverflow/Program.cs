@@ -1,4 +1,10 @@
+using CloneStackOverflow.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("CloneStackOverflowConnection");
+builder.Services.AddDbContext<CloneStackOverflowContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -1,13 +1,16 @@
-﻿using CloneStackOverflow.Models;
+﻿using CloneStackOverflow.Data;
+using CloneStackOverflow.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CloneStackOverflow.Controllers
 {
     public class UserController : Controller
     {
-        public UserController()
-        {
+        private readonly CloneStackOverflowContext _context;
 
+        public UserController(CloneStackOverflowContext context)
+        {
+            _context = context;
         }
 
 
@@ -24,8 +27,11 @@ namespace CloneStackOverflow.Controllers
         [HttpPost]
         public IActionResult Create(User user)
         {
-            //bancoDados.Users.Add(user);
-            //bancoDados.SaveChanges();
+            user.DataCadastro = DateTime.Now;
+
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
             return RedirectToAction(nameof(Index));
         }
 

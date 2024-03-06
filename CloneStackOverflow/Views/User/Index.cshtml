@@ -1,10 +1,40 @@
-﻿@model CloneStackOverflow.Models.User
-
-@{
+﻿@{
+    var lstUsers = new List<User>();
+    lstUsers.Add(new User { Id = 1, Nome = "Kaique", Email = "kaique.melhado@outlook.com" });
+    lstUsers.Add(new User { Id = 2, Nome = "Lucas", Email = "lucas.melhado@outlook.com" });
+    lstUsers.Add(new User { Id = 3, Nome = "Fernando", Email = "fernando.melhado@outlook.com" });
+    lstUsers.Add(new User { Id = 4, Nome = "Elaine", Email = "elaine.melhado@outlook.com" });
+    lstUsers.Add(new User { Id = 5, Nome = "Bianca", Email = "bianca.melhado@outlook.com" });
 }
 
-<h2>Cadastrar Usuário</h2>
+<br />
+<h3>Lista de Usuários</h3>
+<br />
+<br />
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Cadastrar User</a>
-</p>
+<a asp-action="Create" class="btn btn-dark">Cadastrar Novo Usuário</a>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Nome</td>
+                <td>E-mail</td>
+                <td>Ação</td>
+                <td>Ação</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var User in lstUsers)
+            {
+                <tr>
+                    <td>@User.Id</td>
+                    <td>@User.Nome</td>
+                    <td>@User.Email</td>
+                    <td>Editar</td>
+                    <td>Deletar</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

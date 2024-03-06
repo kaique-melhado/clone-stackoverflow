@@ -31,8 +31,8 @@
                     <td>@User.Id</td>
                     <td>@User.Nome</td>
                     <td>@User.Email</td>
-                    <td>Editar</td>
-                    <td>Deletar</td>
+                    <td><a asp-action="Edit" asp-route-id="@User.Id">Editar</a></td>
+                    <td><a asp-action="Delete" asp-route-id="@User.Id">Deletar</a></td>
                 </tr>
             }
         </tbody>

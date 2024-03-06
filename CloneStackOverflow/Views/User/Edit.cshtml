@@ -1,0 +1,39 @@
+﻿@model CloneStackOverflow.Models.User
+
+@{
+    ViewBag.Title = "Editar Dados de Usuário";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form_edit">
+
+        <form asp-action="editUser">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nome)
+                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email)
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Senha)
+                @Html.TextBoxFor(model => model.Senha, new { @class = "form-control" })
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Alterar Dados</button>
+
+        </form>
+
+    </div>
+}

@@ -7,8 +7,9 @@ namespace CloneStackOverflow.Controllers
     {
         public UserController()
         {
-                
+
         }
+
 
         public IActionResult Index()
         {
@@ -21,7 +22,21 @@ namespace CloneStackOverflow.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(User userModel)
+        public IActionResult Create(User user)
+        {
+            //bancoDados.Users.Add(user);
+            //bancoDados.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            //var user = bancoDados.Users.Where(x => x.Id = id);
+            User user = new User { Id = 2, Nome = "Lucas", Email = "lucas.melhado@outlook.com" };
+            return View(user);
+        }
+
+        public IActionResult Delete(int id)
         {
             return RedirectToAction(nameof(Index));
         }

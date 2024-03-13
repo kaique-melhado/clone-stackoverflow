@@ -1,0 +1,70 @@
+﻿@model List<User>
+
+@{
+    ViewData["Title"] = "Consulta de Usuários";
+}
+
+<br />
+<h3>Lista de Usuários</h3>
+<br />
+<br />
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">x</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">x</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<a asp-action="Create" class="btn btn-dark">Cadastrar Novo Usuário</a>
+<br />
+<br />
+
+<div>
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Perfil</th>
+                <th>Data Cadastro</th>
+                <th colspan="2">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var user in Model)
+                {
+                    <tr class="text-center">
+                        <td>@user.Id</td>
+                        <td>@user.Name</td>
+                        <td>@user.Email</td>
+                        <td>@user.Profile.ToString()</td>
+                        <td>@user.CreationDate</td>
+                        <td colspan="2">
+                            <a asp-action="Edit" asp-route-id="@user.Id">Editar</a>&nbsp;
+                            <a asp-action="Delete" asp-route-id="@user.Id">Deletar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="text-center">
+                    <td valign="top" colspan="5">Nenhum usuário encontrado!</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

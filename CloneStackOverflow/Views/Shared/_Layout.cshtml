@@ -10,37 +10,94 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CloneStackOverflow</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="menu">
+
+            <div class="container">
+                <a href="../"><img src="~/images/stackoverflow-icon.png" class="navbar-brand img-fluid" id="menu-logo" />stackoverflow</a>
+
+                <div class="col-8">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"></path>
+                            </svg>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Search..." aria-label="Search...">
+                    </div>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Usuários</a>
-                        </li>
+
+                <a href=""><img class="img-fluid rounded-circle mr-2 buttom-icons" src="~/images/perfil-icon.png" /></a>
+                <a href=""><img class="img-fluid rounded-circle mr-2 buttom-icons" src="~/images/trofeu-icon.png" /></a>
+                <a href=""><img class="img-fluid rounded-circle mr-2 buttom-icons" src="~/images/notificacoes-icon.png" /></a>
+
+                <div class="collapse navbar-collapse" id="navbarSite">
+                    <ul class="navbar-nav" id="navbarMenu" runat="server">
                     </ul>
                 </div>
             </div>
         </nav>
+        <br /><br /><br />
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - CloneStackOverflow - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="rodape">
+        <div id="links" class="p-5">
+            <ul>
+                <p>STACK OVERFLOW</p>
+                <li><a href="../">Questions</a></li>
+                <li><a href="../">Help</a></li>
+            </ul>
+            <ul>
+                <p>PRODUCTS</p>
+                <li><a href="../legislacao">Teams</a></li>
+                <li><a href="../fale-conosco">Advertising</a></li>
+                <li><a href="../fale-conosco">Collectives</a></li>
+                <li><a href="../fale-conosco">Talent</a></li>
+            </ul>
+            <ul>
+                <p>COMPANY</p>
+                <li><a href="../legislacao">About</a></li>
+                <li><a href="../fale-conosco">Press</a></li>
+                <li><a href="../legislacao">Work Here</a></li>
+                <li><a href="../fale-conosco">Legal</a></li>
+                <li><a href="../fale-conosco">Privacy Policy</a></li>
+                <li><a href="../fale-conosco">Terms of Service</a></li>
+                <li><a href="../legislacao">Contact Us</a></li>
+                <li><a href="../fale-conosco">Cookie Settings</a></li>
+                <li><a href="../fale-conosco">Cookie Policy</a></li>
+            </ul>
+            <ul>
+                <p>STACK EXCHANGE NETWORK</p>
+                <li><a href="../legislacao">Technology</a></li>
+                <li><a href="../fale-conosco">Culture & recreation</a></li>
+                <li><a href="../legislacao">Life & arts</a></li>
+                <li><a href="../fale-conosco">Science</a></li>
+                <li><a href="../fale-conosco">Professional</a></li>
+                <li><a href="../fale-conosco">Business</a></li>
+                <li><a href="../legislacao">API</a></li>
+                <li><a href="../fale-conosco">Data</a></li>
+            </ul>
+            <ul>
+                <a href="">Blog</a>
+                <a href="">Facebook</a>
+                <a href="">Twitter</a>
+                <a href="">LinkedIn</a>
+                <a href="">Instagram</a>
+            </ul>
         </div>
     </footer>
+
+    <div id="copyright">
+        Site design / logo &copy; @DateTime.Now.Year Stack Exchange Inc; user contributions licensed under CC BY-SA. rev 2024.3.5.5754
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

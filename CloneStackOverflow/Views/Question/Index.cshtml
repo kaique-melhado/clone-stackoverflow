@@ -1,0 +1,41 @@
+﻿@model Question
+
+<br />
+<br />
+<br />
+@{
+    ViewBag.Title = "Question";
+}
+
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-sucess" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">x</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">x</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
+
+<form asp-controller="Question" asp-action="RegisterQuestion" method="post">
+    <div class="form-group">
+        <label for="exampleTitle1">Title</label>
+        <input asp-for="Title" type="text" class="form-control">
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="exampleInputDescription">Description</label>
+        <input asp-for="Description" type="text" class="form-control">
+    </div>
+    <br />
+    <button type="submit" class="btn btn-dark">Enter</button>
+    <br /><br />
+</form>
+

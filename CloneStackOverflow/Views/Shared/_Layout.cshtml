@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Newtonsoft.Json
+@{
+    var userLogged = new User();
+    var session = Context.Session.GetString("sessionUserLogged");
+    if (!string.IsNullOrEmpty(session))
+        userLogged = JsonConvert.DeserializeObject<User>(session);
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,10 +20,10 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="menu">
 
-            <div class="container">
+            <div class="container-fluid">
                 <a href="../"><img src="~/images/stackoverflow-icon.png" class="navbar-brand img-fluid" id="menu-logo" />stackoverflow</a>
 
-                <div class="col-8">
+                <div class="col-8 px-2">
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -30,9 +38,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a href=""><img class="img-fluid rounded-circle mr-2 buttom-icons" src="~/images/perfil-icon.png" /></a>
-                <a href=""><img class="img-fluid rounded-circle mr-2 buttom-icons" src="~/images/trofeu-icon.png" /></a>
-                <a href=""><img class="img-fluid rounded-circle mr-2 buttom-icons" src="~/images/notificacoes-icon.png" /></a>
+                @{
+                    if (userLogged.Id != 0)
+                    {
+                        <a asp-area="" asp-controller="User" asp-action="Edit" asp-route-id="@userLogged.Id"><img class="img-fluid rounded-circle mr-2 buttom-icons" src="~/images/perfil-icon.png" /></a>
+                        <a href=""><img class="img-fluid rounded-circle mr-2 buttom-icons" src="~/images/trofeu-icon.png" /></a>
+                        <a href=""><img class="img-fluid rounded-circle mr-2 buttom-icons" src="~/images/notificacoes-icon.png" /></a>
+                        <a asp-area="" asp-controller="Login" asp-action="Logout"><img class="img-fluid rounded-circle mr-2 buttom-icons" src="~/images/logout-icon.png" /></a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-outline-dark" asp-area="" asp-controller="Login" asp-action="Index">Sign In</a>
+                        <a class="btn btn-outline-dark" asp-area="" asp-controller="User" asp-action="Create">Sign Up</a>
+                    }
+                }
 
                 <div class="collapse navbar-collapse" id="navbarSite">
                     <ul class="navbar-nav" id="navbarMenu" runat="server">

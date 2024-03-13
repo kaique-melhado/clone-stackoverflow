@@ -1,10 +1,7 @@
-﻿@{
-    var lstUsers = new List<User>();
-    lstUsers.Add(new User { Id = 1, Nome = "Kaique", Email = "kaique.melhado@outlook.com" });
-    lstUsers.Add(new User { Id = 2, Nome = "Lucas", Email = "lucas.melhado@outlook.com" });
-    lstUsers.Add(new User { Id = 3, Nome = "Fernando", Email = "fernando.melhado@outlook.com" });
-    lstUsers.Add(new User { Id = 4, Nome = "Elaine", Email = "elaine.melhado@outlook.com" });
-    lstUsers.Add(new User { Id = 5, Nome = "Bianca", Email = "bianca.melhado@outlook.com" });
+﻿@model List<User>
+
+@{
+    ViewData["Title"] = "Consulta de Usuários";
 }
 
 <br />
@@ -12,27 +9,60 @@
 <br />
 <br />
 
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">x</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">x</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
 <a asp-action="Create" class="btn btn-dark">Cadastrar Novo Usuário</a>
+<br />
+<br />
+
 <div>
     <table class="table">
         <thead>
-            <tr>
-                <td>ID</td>
-                <td>Nome</td>
-                <td>E-mail</td>
-                <td>Ação</td>
-                <td>Ação</td>
+            <tr class="text-center">
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Perfil</th>
+                <th>Data Cadastro</th>
+                <th colspan="2">Ações</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var User in lstUsers)
+            @if (Model != null && Model.Any())
             {
-                <tr>
-                    <td>@User.Id</td>
-                    <td>@User.Nome</td>
-                    <td>@User.Email</td>
-                    <td><a asp-action="Edit" asp-route-id="@User.Id">Editar</a></td>
-                    <td><a asp-action="Delete" asp-route-id="@User.Id">Deletar</a></td>
+                @foreach (var user in Model)
+                {
+                    <tr class="text-center">
+                        <td>@user.Id</td>
+                        <td>@user.Name</td>
+                        <td>@user.Email</td>
+                        <td>@user.Profile.ToString()</td>
+                        <td>@user.CreationDate</td>
+                        <td colspan="2">
+                            <a asp-action="Edit" asp-route-id="@user.Id">Editar</a>&nbsp;
+                            <a asp-action="Delete" asp-route-id="@user.Id">Deletar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="text-center">
+                    <td valign="top" colspan="5">Nenhum usuário encontrado!</td>
                 </tr>
             }
         </tbody>

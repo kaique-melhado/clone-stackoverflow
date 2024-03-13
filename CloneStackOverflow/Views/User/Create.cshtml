@@ -1,39 +1,69 @@
-﻿@model CloneStackOverflow.Models.User
-
+﻿@using CloneStackOverflow.Enums
+@model CloneStackOverflow.Models.User
 @{
     ViewBag.Title = "Cadastro de Usuário";
 }
 
+<br />
 <h2>@ViewBag.Title</h2>
+<br />
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-sucess" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">x</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">x</button>
+        @TempData["MensagemErro"]
+    </div>
+}
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    <form asp-controller="User" asp-action="Create" method="post">
+        <div class="form-group mb-3">
+            <label for="Name" class="form-label">Name</label>
+            <input type="text" class="form-control" asp-for="Name">
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+        <div class="form-group mb-3">
+            <label for="Email" class="form-label">E-mail</label>
+            <input type="text" class="form-control" asp-for="Email">
+            @Html.ValidationMessageFor(x => x.Email)
+        </div>
+        <div class="form-group mb-3">
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" asp-for="Password">
+            @Html.ValidationMessageFor(x => x.Password)
+        </div>
+        <div hidden class="form-group mb-3">
+            <label for="Profile" class="form-label">Profile</label>
+            <select class="form-select" asp-for="Profile">
+                @* <option value="0">Selecione:</option> *@
+                <option value="@PerfilEnum.Default">Default</option>
+                <option value="@PerfilEnum.Admin">Admin</option>
+            </select>
+            @Html.ValidationMessageFor(x => x.Profile)
+        </div>
+        <div class="form-group">
+            <br />
+            <button type="submit" class="btn btn-dark">Register</button>
+            <a class="btn btn-outline-danger" asp-action="Index" asp-controller="User" role="button">Back</a>
+        </div>
+    </form>
+}
 
-    <div class="form_cadastro">
+<br />
+<br />
 
-        <form asp-action="createUser">
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Nome)
-                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Email)
-                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-            </div>
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Senha)
-                @Html.TextBoxFor(model => model.Senha, new { @class = "form-control" })
-            </div>
-
-
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-
-        </form>
-
-    </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

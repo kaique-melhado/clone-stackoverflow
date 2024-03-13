@@ -1,18 +1,29 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using CloneStackOverflow.Enums;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CloneStackOverflow.Models
 {
     [Table("User")]
     public class User
     {
-        public int Id { get; set; } 
+        [Key]
+        public int Id { get; set; }
 
-        public string Nome { get; set; }    
+        [Required]
+        public string Name { get; set; }
 
-        public string Email { get; set;}
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
 
-        public string Senha { get; set;}
-
-        public DateTime DataCadastro { get; set;} 
+        [Required]
+        public string Password { get; set; }
+        
+        [Required]
+        public PerfilEnum Profile { get; set; }
+        
+        [Required]
+        public DateTime CreationDate { get; set;} = DateTime.Now;
     }
 }

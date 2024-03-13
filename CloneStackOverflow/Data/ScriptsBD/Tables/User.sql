@@ -1,0 +1,9 @@
+CREATE TABLE User(
+	ID			INT				NOT NULL	AUTO_INCREMENT,
+    Name		VARCHAR(80)		NOT NULL,
+    Email		VARCHAR(100)	NOT NULL	UNIQUE,
+    Password	VARCHAR(30)		NOT NULL,
+    Profile		INT				NOT NULL,
+    CreationDate DATETIME		NOT NULL,
+    PRIMARY KEY(ID)
+);

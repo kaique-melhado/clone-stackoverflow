@@ -46,8 +46,8 @@
             <label for="Profile" class="form-label">Profile</label>
             <select class="form-select" asp-for="Profile">
                 @* <option value="0">Selecione:</option> *@
-                <option value="@PerfilEnum.Default">Default</option>
-                <option value="@PerfilEnum.Admin">Admin</option>
+                <option value="@ProfileEnum.Default">Default</option>
+                <option value="@ProfileEnum.Admin">Admin</option>
             </select>
             @Html.ValidationMessageFor(x => x.Profile)
         </div>

@@ -22,7 +22,7 @@ namespace CloneStackOverflow.Filters
                 {
                     context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Login" }, { "action", "Index" } });
                 }
-                if (user.Profile != Enums.PerfilEnum.Admin) 
+                if (user.Profile != Enums.ProfileEnum.Admin) 
                 {
                     context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Home" }, { "action", "Restrict" } });
                 }

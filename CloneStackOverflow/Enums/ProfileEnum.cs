@@ -1,6 +1,6 @@
 ﻿namespace CloneStackOverflow.Enums
 {
-    public enum PerfilEnum
+    public enum ProfileEnum
     {
         Admin = 1,
         Default = 2

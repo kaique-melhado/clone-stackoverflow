@@ -21,7 +21,7 @@ namespace CloneStackOverflow.Models
         public string Password { get; set; }
         
         [Required]
-        public PerfilEnum Profile { get; set; }
+        public ProfileEnum Profile { get; set; }
         
         [Required]
         public DateTime CreationDate { get; set;} = DateTime.Now;

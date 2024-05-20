@@ -1,6 +1,4 @@
-﻿using CloneStackOverflow.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace CloneStackOverflow.Controllers
 {
@@ -16,10 +14,17 @@ namespace CloneStackOverflow.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+
+            var errorMessage = HttpContext.Session.GetString("ErrorMessage");
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                ViewBag.ErrorMessage = errorMessage;
+                HttpContext.Session.Remove("ErrorMessage");
+            }
+
+            return View();
         }
     }
 }
